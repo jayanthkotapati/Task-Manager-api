@@ -1,0 +1,7 @@
+[
+  { "title": "Set up CI pipeline", "description": "Run tests and lint on every pull request.", "status": "in-progress", "priority": "high", "dueDate": "2026-11-01T00:00:00.000Z", "tags": ["devops", "backend"] },
+  { "title": "Write API documentation", "description": "Document all endpoints in the README.", "status": "todo", "priority": "medium", "dueDate": "2026-11-10T00:00:00.000Z", "tags": ["docs"] },
+  { "title": "Add rate limiting", "description": "Protect auth routes from brute force.", "status": "done", "priority": "high", "dueDate": "2026-10-15T00:00:00.000Z", "tags": ["security", "backend"] },
+  { "title": "Optimize task listing query", "description": "Add compound indexes and pagination.", "status": "done", "priority": "high", "dueDate": "2026-10-20T00:00:00.000Z", "tags": ["performance", "backend"] },
+  { "title": "Deploy to AWS EC2", "description": "Docker compose deployment behind nginx.", "status": "todo", "priority": "medium", "dueDate": "2026-11-20T00:00:00.000Z", "tags": ["devops"] }
+]

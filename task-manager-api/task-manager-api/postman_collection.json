@@ -1,0 +1,28 @@
+{
+  "info": { "name": "Task Manager API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "taskId", "value": "" }
+  ],
+  "item": [
+    { "name": "Register", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }],
+      "url": "{{baseUrl}}/api/auth/register",
+      "body": { "mode": "raw", "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"password\": \"Password123\"\n}" } } },
+    { "name": "Login", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }],
+      "url": "{{baseUrl}}/api/auth/login",
+      "body": { "mode": "raw", "raw": "{\n  \"email\": \"user1@example.com\",\n  \"password\": \"User@12345\"\n}" } },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.collectionVariables.set('token', pm.response.json().token);"] } }] },
+    { "name": "Create task", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" }],
+      "url": "{{baseUrl}}/api/tasks",
+      "body": { "mode": "raw", "raw": "{\n  \"title\": \"Ship v1\",\n  \"priority\": \"high\",\n  \"dueDate\": \"2026-12-01\",\n  \"tags\": [\"backend\"]\n}" } },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.collectionVariables.set('taskId', pm.response.json().data._id);"] } }] },
+    { "name": "List tasks (filter + paginate)", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+      "url": "{{baseUrl}}/api/tasks?status=todo&sortBy=dueDate&order=asc&page=1&limit=20" } },
+    { "name": "Task stats", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/tasks/stats" } },
+    { "name": "Update task", "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" }],
+      "url": "{{baseUrl}}/api/tasks/{{taskId}}", "body": { "mode": "raw", "raw": "{ \"status\": \"done\" }" } } },
+    { "name": "Delete task", "request": { "method": "DELETE", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/tasks/{{taskId}}" } },
+    { "name": "Admin: list users", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/users" } }
+  ]
+}

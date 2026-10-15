@@ -1,0 +1,6 @@
+[
+  { "name": "Admin User", "email": "admin@example.com", "password": "Admin@12345", "role": "admin" },
+  { "name": "Maya Manager", "email": "manager@example.com", "password": "Manager@12345", "role": "manager" },
+  { "name": "Demo User 1", "email": "user1@example.com", "password": "User@12345", "role": "user" },
+  { "name": "Demo User 2", "email": "user2@example.com", "password": "User@12345", "role": "user" }
+]
